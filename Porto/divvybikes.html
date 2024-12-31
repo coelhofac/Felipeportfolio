@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Felipe's Portfolio - Divvy's Project</title>
+        <link rel="stylesheet" href="assets/css/tailwind.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+
+    <body class="bg-gray-100">
+        
+        
+        <section class="py-10 md:py-6">
+            <div class="container max-w-screen-xl mx-auto px-4">
+                <!-- Navigation Bar -->
+                <nav class="flex items-center justify-between mb-40">
+                    <!-- Logo -->
+                    <img src="assets/image/fcoelho (1).png" alt="Logo">
+        
+                    <!-- Buttons aligned to the right -->
+                    <div class="flex space-x-4">
+                        <!-- Projects Button with Inverted Colors -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-gray-700 text-white font-medium md:font-semibold text-md rounded-md hover:bg-white hover:text-gray-700 transition ease-linear duration-500" 
+                            onclick="window.location.href='/index.html#projects'">
+                            Projects
+                        </button>
+        
+                        <!-- Home Button -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500" 
+                            onclick="window.location.href='/index.html'">
+                            Home
+                        </button>
+        
+                        <!-- Get My CV Button -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500" 
+                            onclick="window.location.href='/pagina-destino'">
+                            Get my CV
+                        </button>
+                    </div>
+                </nav>
+        
+                <!-- Title for the next section -->
+                <div class="text-center mt-20">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-700">Divvy Bikes Dataset Analysis: Increase number of members</h2>
+                    <p class="mt-4 text-gray-500 text-lg">
+                        Project made with SQL and Tableau as a Capstone Project for the Google Data Analytics Professional Certificate. 
+                    </p>
+                </div>
+            </div>
+        </section>
+       
+
+
+
+        <section class="py-10 md:py-12">
+            <main class="container mx-auto px-4 py-12">
+                <div class="bg-white shadow-lg rounded-lg p-6">
+            
+            <div class="container max-w-screen-xl mx-auto px-4">
+                <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">Results</h1>
+
+                <p class="font-normal text-gray-500 text-xs md:text-base mb-20">
+                    In this project, we've received a dataset that contained an entry for each bike ride in the "Divvy Bikes" service in Chicago. The company's goal was to understand their metrics and convert their casual users into subscribers. We've discovered that the sporadicness of casual member app usage covered a reality: They spent far more on rides throughout the year than subscribers. 
+                    The solution could be good for the company and for the users if we elaborate a strategy and a fitting subscription plan for them. Check the PowerPoint <a href="https://drive.usercontent.google.com/u/0/uc?id=16A9jHAx4S0Dh1d6s-SQGgEzDaBb_MV8e&export=download" class="text-blue-500 underline">here</a>. Following, you can see the dashboard and then our process.
+                </p>
+                <img src="assets\image\divvyproject dash.png" alt="Dashboard and Process Image" class="w-full mt-4">
+                <p class="mt-4 text-gray-500 text-lg">
+
+                </p>
+                <br><br>
+                <h4 class="font-medium text-gray-700 md:text-2xl mb-5">Data cleaning and processing with SQL</h4>
+                    <p class="font-normal text-gray-500 text-md"> Although the Dataset covered until the year of 2024, the complete dataset would surpass 5gb, impossible to load in sql without the help of a cloud service, so i focused on 2021 and 2022. 
+                        <br>
+                       Our work on sql can be summed up in: 1. Loading the Data; 2. Joining and making basic cleaning in it; 3. Preparing it with some calculated columns to import it to tableau. I've tried to let it very clear in the following query.
+                    </p>
+
+            </div>
+
+            <div class="bg-gray-700 text-gray-200 p-4 rounded-md overflow-x-auto mt-8 max-w-4xl mx-auto">
+                <pre class="text-sm">
+                    <code class="text-green-400">
+                        <span class="text-yellow-400 font-bold">/* CREATING TABLE AND INSERTING THE DATASET */</span>
+            
+                        CREATE TABLE combinedtripdata (
+                            ride_id NVARCHAR(200),
+                            rideable_type NVARCHAR(200),
+                            started_at DATETIME,
+                            ended_at DATETIME,
+                            start_station_name NVARCHAR(200),
+                            start_station_id INT,
+                            end_station_name NVARCHAR(200),
+                            end_station_id INT,
+                            start_lat float,
+                            start_lng float,
+                            end_lat float,
+                            end_lng float,
+                            member_casual NVARCHAR(200)
+                        );
+                        
+                        
+                        INSERT INTO [dbo].[combinedtripdata]
+                        SELECT * FROM [dbo].[202004-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202005-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202006-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202007-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202008-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202009-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202010-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202011-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202012-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202101-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202102-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202103-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202104-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202105-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202106-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202107-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202108-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202109-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202110-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202111-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202112-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202201-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202202-divvy-tripdata]
+                        UNION ALL
+                        SELECT * FROM [dbo].[202203-divvy-tripdata];
+                    </code>
+                </pre>
+            </div>
+    
+            <div class="bg-gray-700 text-gray-200 p-4 rounded-md overflow-x-auto mt-8 max-w-4xl mx-auto">
+                <pre class="text-sm">
+                    <code class="text-green-400">
+                        <span class="text-yellow-400 font-bold">/* CREATING RIDE DISTANCE COLUMN WITH COORDINATES */</span>
+            
+                        ALTER TABLE [dbo].[combinedtripdata]
+                        ALTER COLUMN start_station_id INT;
+
+                        ALTER TABLE [dbo].[combinedtripdata]
+                        ALTER COLUMN end_station_id INT;
+
+                        ALTER TABLE [dbo].[combinedtripdata] ADD ride_distance_km FLOAT;
+
+                        UPDATE [dbo].[combinedtripdata]
+                        SET ride_distance_km = (
+                            6371 * ACOS(
+                                COS(RADIANS(start_lat)) * COS(RADIANS(end_lat)) *
+                                COS(RADIANS(end_lng) - RADIANS(start_lng)) +
+                                SIN(RADIANS(start_lat)) * SIN(RADIANS(end_lat))
+                            )
+                        );
+
+                        <span class="text-yellow-400">---- ADVANCED MATHEMATIC USED WITH THE HELP OF AI.</span>
+
+                        UPDATE [dbo].[combinedtripdata]
+                        SET ride_distance_km = (
+                            CASE 
+                                WHEN start_lat BETWEEN -90 AND 90 AND end_lat BETWEEN -90 AND 90 
+                                    AND start_lng BETWEEN -180 AND 180 AND end_lng BETWEEN -180 AND 180 THEN
+                                    6371 * ACOS(
+                                        LEAST(1.0, GREATEST(-1.0,
+                                            COS(RADIANS(start_lat)) * COS(RADIANS(end_lat)) *
+                                            COS(RADIANS(end_lng) - RADIANS(start_lng)) +
+                                            SIN(RADIANS(start_lat)) * SIN(RADIANS(end_lat))
+                                        ))
+                                    )
+                                ELSE NULL
+                            END
+                        )
+
+                        <span class="text-yellow-400 font-bold">/* CREATING RIDE DURATION COLUMN */</span>
+
+                        ALTER TABLE [dbo].[combinedtripdata] ADD ride_duration_minutes INT;
+
+                        UPDATE [dbo].[combinedtripdata]
+                        SET ride_duration_minutes = DATEDIFF(MINUTE, started_at, ended_at)
+
+                        <span class="text-yellow-400">---- 0 km distance ride. means he is returning to the same station.</span>
+
+                        ALTER TABLE [dbo].[combinedtripdata]
+                        ADD sameplacedeliver CHAR(1);
+
+                        UPDATE [dbo].[combinedtripdata]
+                        SET sameplacedeliver = CASE
+                            WHEN ride_distance_km = 0 THEN 'Y'
+                            ELSE 'N'
+                        END;
+
+
+
+                        <span class="text-yellow-400 font-bold">/*  REMOVING INVALIDS AND FORMATING */</span>
+
+                        DELETE FROM [dbo].[combinedtripdata] 
+                        WHERE ride_duration_minutes >= 700
+                        OR ride_duration_minutes <= 0
+
+                        select * FROM [dbo].[combinedtripdata] 
+                        WHERE ride_distance_km >= 40
+                        OR ride_distance_km <= 0
+
+                        UPDATE [dbo].[combinedtripdata]
+                        SET start_station_name = TRIM(start_station_name)
+
+                        UPDATE [dbo].[combinedtripdata]
+                        SET end_station_name = TRIM(end_station_name)
+
+                        <span class="text-yellow-400 font-bold">/*  CHECKING DOUBLE ENTRIES. */</span> 
+
+                        Select ride_id, Count(ride_id) 
+                        From [dbo].[combinedtripdata]
+                        Group by ride_id
+                        HAVING count(ride_id) >1
+
+                        Select top 50 *
+                        From [dbo].[combinedtripdata]
+
+                    </code>
+                </pre>
+                <br>
+            </div>
+            <br><br>
+            <div class="container max-w-screen-xl mx-auto px-4">
+                
+
+                <h4 class="font-medium text-gray-700 md:text-2xl mb-5">Data exploration and Insights revealing</h4>
+                    <p class="font-normal text-gray-500 text-md"> Our work with Tableau was first of all make all kind of graphics to understand better our dataset, always thinking the best way to uncover a solution to our problem. Criated some calculated columns, what allowed to show some measurements on our dashboards, as Percentual Difference to the last year, last month, average of rides, distance and etc.
+                       After everything i've proposed to the stakeholders:
+                       <br> 1. Deep the financial study with more data and provide to the costumers the potential economy each one could do if became a member. 
+                       <br> 2. Create an entry-level membership plan that fits better to this type of costumer app usage pattern (Sporadic use)
+                       <br> 3. Provide a 7-day test trial for casual users and a report at the final of the period showing the economy done and call-to-action to subscribing. 
+                       <br> <br> We are confident that this way we can increase the subscriptions metrics, but unfortunately, due to the limitation of the provided dataset, i could not give a better prediction about the membership growth.
+                    </p>
+
+            </div>
+            
+            
+            
+
+
+
+            </main>
+
+        </section>
+            
+
+        <footer class="py-10 md:py-16 mb-20 md:mb-40 lg::mb-52">
+
+            <div class="container max-w-screen-xl mx-auto px-4">
+
+                <div class="text-center">
+                    <h1 class="font-medium text-gray-700 text-4xl md:text-5xl mb-5">Contact</h1>
+
+                    <p class="font-normal text-gray-400 text-md md:text-lg mb-20">Feel free to contact me by any of those means. <br> Felipecoelhoacvv@gmail.com</p>
+
+                    <div class="flex items-center justify-center space-x-8">
+                        <a href="https://www.linkedin.com/in/felipe-coelho-372b952b6/" class="w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 transition ease-in-out duration-500">
+                            <i data-feather="linkedin" class="text-gray-500 hover:text-gray-800 transition ease-in-out duration-500"></i>
+                        </a>
+    
+                        <a href="#" class="w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 transition ease-in-out duration-500">
+                            <i data-feather="github" class="text-gray-500 hover:text-gray-700 transition ease-in-out duration-500"></i>
+                        </a>
+    
+                    </div>
+                </div>
+
+            </div>
+
+        </footer>
+
+
+        <script>
+            feather.replace()
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Felipe's Portfolio - Adventure work's project</title>
+        <link rel="stylesheet" href="assets/css/tailwind.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+
+    <body class="bg-gray-100">
+        
+        
+        <section class="py-10 md:py-6">
+            <div class="container max-w-screen-xl mx-auto px-4">
+                <!-- Navigation Bar -->
+                <nav class="flex items-center justify-between mb-40">
+                    <!-- Logo -->
+                    <img src="assets/image/fcoelho (1).png" alt="Logo">
+        
+                    <!-- Buttons aligned to the right -->
+                    <div class="flex space-x-4">
+                        <!-- Projects Button with Inverted Colors -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-gray-700 text-white font-medium md:font-semibold text-md rounded-md hover:bg-white hover:text-gray-700 transition ease-linear duration-500" 
+                            onclick="window.location.href='/index.html#projects'">
+                            Projects
+                        </button>
+        
+                        <!-- Home Button -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500" 
+                            onclick="window.location.href='/index.html'">
+                            Home
+                        </button>
+        
+                        <!-- Get My CV Button -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500" 
+                            onclick="window.location.href='/pagina-destino'">
+                            Get my CV
+                        </button>
+                    </div>
+                </nav>
+        
+                <!-- Title for the next section -->
+                <div class="text-center mt-20">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-700">Adventure Works: Tracking a store's sale performance</h2>
+                    <p class="mt-4 text-gray-500 text-lg">
+                        Project made entirely in PowerBi, with PowerQuery, DAX, and Visualization Tools.  
+                    </p>
+                </div>
+            </div>
+        </section>
+       
+
+
+
+        <section class="py-10 md:py-12">
+            <main class="container mx-auto px-4 py-12">
+                <div class="bg-white shadow-lg rounded-lg p-6">
+            
+            <div class="container max-w-screen-xl mx-auto px-4">
+                <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">Results</h1>
+
+                <p class="font-normal text-gray-500 text-xs md:text-base mb-20">
+                    Our goal in this project was retrieve an interactive dataset that allowed our stakeholders to control the performance of their store in a glance. For this particular project i've used all Power Bi for Data Cleaning, Preparing, Exploration and Visualization. Following, you can see the dashboard and then our process.
+                </p>
+
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+                        <iframe title="Projectadventure" width="1000" height="635" src="https://app.powerbi.com/view?r=eyJrIjoiNjExNzRkMTAtYjQ0MS00ZGFlLTk2YTItODM2N2M5MmY5YWE1IiwidCI6IjExMmM3ODIwLTBiMmQtNDk2Ny1iZmE1LTgzYWUzN2Q4YmJmNCJ9" frameborder="0" allowFullScreen="true"></iframe>
+                    </div>
+                
+                        <br><br>
+                <h4 class="font-medium text-gray-700 md:text-2xl mb-5">Importing and cleaning</h4>
+                    <p class="font-normal text-gray-500 text-md"> I've choosed to stablish all the connections between the tables in the BI, what is more appropriate for bigger datasets
+                        <br>
+                       Our cleaning work can be summed up in: 	1. Verifying and correcting each column's data type
+                       2. Extracting the name of the month of the dates.
+                       3. Identifying and correcting errors through column profiling
+                   Correcting capitalization and trimming extra spaces.
+                    </p>
+
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+                        <img src="assets\image\mavendatas.png" alt="Maven Datas Image" style="max-width:100%; height:auto;">
+
+                    </div>
+
+                    <br>
+
+                    <h4 class="font-medium text-gray-700 md:text-2xl mb-5">Stablishing relationships and creating measures</h4>
+                    <p class="font-normal text-gray-500 text-md"> In this step we've focused on creating our data relationships, building the SCHEMA, stablishing primary and foreign keys, creating all the needed measures for data exploration and visualization based on PRIMARY keys.
+                        
+                    
+                    </p>
+
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+                        <img src= "assets\image\Mavenrelationship.png" alt="Maven Datas Image" style="max-width:100%; height:auto;">
+                        <img src="assets\image\mavenmeasures.png" alt="Maven Datas Image" style="max-width:100%; height:auto;">
+                    </div>
+
+                    <h4 class="font-medium text-gray-700 md:text-2xl mb-5">
+                        Measures Formulas:
+                    </h4>
+                    <br>
+                    
+                    <pre class="font-mono text-sm bg-gray-100 p-4 rounded">
+                    <b>Month Orders</b> = 
+                    CALCULATE(
+                        [Total Orders],
+                        DATEADD(
+                            'Calendar Lookup'[Date],
+                            0,
+                            MONTH
+                        )
+                    )
+                    
+                    <b>Month Profit</b> = 
+                    CALCULATE(
+                        [Total Profit],
+                        DATEADD(
+                            'Calendar Lookup'[Date],
+                            0,
+                            MONTH
+                        )
+                    )
+                    
+                    <b>Month Returns</b> = 
+                    CALCULATE(
+                        [Total Returns],
+                        DATEADD(
+                            'Calendar Lookup'[Date],
+                            0,
+                            MONTH
+                        )
+                    )
+                    
+                    <b>Previous Month Customers</b> = 
+                    CALCULATE(
+                        [Total Customers],
+                        DATEADD(
+                            'Calendar Lookup'[Date],
+                            -1,
+                            MONTH
+                        )
+                    )
+                    
+                    <b>Previous Month Orders</b> = 
+                    CALCULATE(
+                        [Total Orders],
+                        DATEADD(
+                            'Calendar Lookup'[Date],
+                            -1,
+                            MONTH
+                        )
+                    )
+                    
+                    <b>Previous Month Profit</b> = 
+                    CALCULATE(
+                        [Total Profit],
+                        DATEADD(
+                            'Calendar Lookup'[Date],
+                            -1,
+                            MONTH
+                        )
+                    )
+                    
+                    <b>Previous Month Returns</b> = 
+                    CALCULATE(
+                        [Return Rate],
+                        DATEADD(
+                            'Calendar Lookup'[Date],
+                            -1,
+                            MONTH
+                        )
+                    )
+                    
+                    <b>Previous Month Revenue</b> = 
+                    CALCULATE(
+                        [Total Revenue],
+                        DATEADD(
+                            'Calendar Lookup'[Date],
+                            -1,
+                            MONTH
+                        )
+                    )
+                    
+                    <b>Quantity Returned</b> = 
+                    SUM(
+                        'Returns Data'[ReturnQuantity]
+                    )
+                    
+                    <b>Quantity Sold</b> = 
+                    SUM(
+                        'Sales Data'[OrderQuantity]
+                    )
+                    
+                    <b>Return Rate</b> = 
+                    DIVIDE(
+                        [Quantity Returned],
+                        [Quantity Sold],
+                        "No Sales"
+                    )
+                    
+                    <b>Total Cost</b> = 
+                    SUMX(
+                        'Sales Data',
+                        'Sales Data'[OrderQuantity]
+                        *
+                        RELATED(
+                            'Product Lookup'[ProductCost]
+                        )
+                    )
+                    
+                    <b>Total Customers</b> = 
+                    DISTINCTCOUNT(
+                        'Sales Data'[CustomerKey]
+                    )
+                    
+                    <b>Total Orders</b> = 
+                    DISTINCTCOUNT(
+                        'Sales Data'[OrderNumber]
+                    )
+                    
+                    <b>Total Profit</b> = 
+                    [Total Revenue] - [Total Cost]
+                    
+                    <b>Total Returns</b> = 
+                    COUNT(
+                        'Returns Data'[ReturnQuantity]
+                    )
+                    
+                    <b>Total Revenue</b> = 
+                    SUMX(
+                        'Sales Data',
+                        'Sales Data'[OrderQuantity]
+                        *
+                        RELATED(
+                            'Product Lookup'[ProductPrice]
+                        )
+                    )
+                    </pre>
+                    
+                    
+
+
+                    </p>
+
+            </div>
+
+            
+            
+            
+            
+
+
+
+            </main>
+
+        </section>
+            
+
+        <footer class="py-10 md:py-16 mb-20 md:mb-40 lg::mb-52">
+
+            <div class="container max-w-screen-xl mx-auto px-4">
+
+                <div class="text-center">
+                    <h1 class="font-medium text-gray-700 text-4xl md:text-5xl mb-5">Contact</h1>
+
+                    <p class="font-normal text-gray-400 text-md md:text-lg mb-20">Feel free to contact me by any of those means. <br> Felipecoelhoacvv@gmail.com</p>
+
+                    <div class="flex items-center justify-center space-x-8">
+                        <a href="https://www.linkedin.com/in/felipe-coelho-372b952b6/" class="w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 transition ease-in-out duration-500">
+                            <i data-feather="linkedin" class="text-gray-500 hover:text-gray-800 transition ease-in-out duration-500"></i>
+                        </a>
+    
+                        <a href="#" class="w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 transition ease-in-out duration-500">
+                            <i data-feather="github" class="text-gray-500 hover:text-gray-700 transition ease-in-out duration-500"></i>
+                        </a>
+    
+                    </div>
+                </div>
+
+            </div>
+
+        </footer>
+
+
+        <script>
+            feather.replace()
+        </script>
+
+    </body>
+</html>

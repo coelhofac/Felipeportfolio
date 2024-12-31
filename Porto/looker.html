@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Felipe's Portfolio - Divvy's Project</title>
+        <link rel="stylesheet" href="assets/css/tailwind.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+
+    <body class="bg-gray-100">
+        
+        
+        <section class="py-10 md:py-6">
+            <div class="container max-w-screen-xl mx-auto px-4">
+                <!-- Navigation Bar -->
+                <nav class="flex items-center justify-between mb-40">
+                    <!-- Logo -->
+                    <img src="assets/image/fcoelho (1).png" alt="Logo">
+        
+                    <!-- Buttons aligned to the right -->
+                    <div class="flex space-x-4">
+                        <!-- Projects Button with Inverted Colors -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-gray-700 text-white font-medium md:font-semibold text-md rounded-md hover:bg-white hover:text-gray-700 transition ease-linear duration-500" 
+                            onclick="window.location.href='/index.html#projects'">
+                            Projects
+                        </button>
+        
+                        <!-- Home Button -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500" 
+                            onclick="window.location.href='/index.html'">
+                            Home
+                        </button>
+        
+                        <!-- Get My CV Button -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500" 
+                            onclick="window.location.href='/pagina-destino'">
+                            Get my CV
+                        </button>
+                    </div>
+                </nav>
+        
+                <!-- Title for the next section -->
+                <div class="text-center mt-20">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-700">Loan Fintech: Realtime Performance Monitoring</h2>
+                    <p class="mt-4 text-gray-500 text-lg">
+                        Project made with Google's BigQuery (SQL) and Looker Studio as a Capstone Project for the Google Cloud Data Analytics Professional Certificate. 
+                    </p>
+                </div>
+            </div>
+        </section>
+       
+
+
+
+        <section class="py-10 md:py-12">
+            <main class="container mx-auto px-4 py-12">
+                <div class="bg-white shadow-lg rounded-lg p-6">
+            
+            <div class="container max-w-screen-xl mx-auto px-4">
+                <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">Results</h1>
+
+                <p class="font-normal text-gray-500 text-xs md:text-base mb-20">
+                    In this project, i've worked in a dataset that covered the loans and customers data of a fintech that had the goal of lending. We've elaborated and interactive dashboard that could be updated regularly through the google storage database. 
+                </p>
+                <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+                    <iframe width="1000" height="636" src="https://lookerstudio.google.com/embed/reporting/c46ceebd-d32d-4964-8a8d-3ad1dafd0ac7/page/zngaE" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+                </div>
+
+                <br><br>
+                <h4 class="font-medium text-gray-700 md:text-2xl mb-5">BigQuery</h4>
+                    <p class="font-normal text-gray-500 text-md"> This dataset had, for our purposes, an almost ready data. What needed some prep was done in the custom query itself
+                    </p>
+
+            </div>
+
+            <div class="bg-gray-700 text-gray-200 p-4 rounded-md overflow-x-auto mt-8 max-w-4xl mx-auto">
+                <pre class="text-sm">
+                    <code class="text-green-400">
+                        <span class="text-yellow-400 font-bold">/* Custom BigQuery */</span>
+            
+                        SELECT 
+                            loan.loan_id,
+                            loan.customer_id,
+                            loan.loan_amount,
+                            loan.state,
+                            loan.status,
+                            loan.purpose,
+                            loan.pymnt_plan,
+                            PARSE_DATE('%b %Y', loan.issue_date) AS issue_date_converted,
+                            INITCAP(REPLACE(loan.purpose, '_', ' ')) AS formatted_purpose,
+                            CASE 
+                                WHEN customer.annual_inc <= 50000 THEN 'Low Income'
+                                WHEN customer.annual_inc BETWEEN 50001 AND 100000 THEN 'Lower-Middle Income'
+                                WHEN customer.annual_inc BETWEEN 100001 AND 150000 THEN 'Middle Income'
+                                WHEN customer.annual_inc BETWEEN 150001 AND 200000 THEN 'Upper-Middle Income'
+                                WHEN customer.annual_inc BETWEEN 200001 AND 300000 THEN 'Affluent'
+                                WHEN customer.annual_inc BETWEEN 300001 AND 400000 THEN 'High Income'
+                                WHEN customer.annual_inc BETWEEN 400001 AND 500000 THEN 'Very High Income'
+                                ELSE 'Income Out of Range'
+                            END AS CustomerCategory
+                        FROM 
+                            `lookfintech.loan` AS loan
+                        FULL OUTER JOIN 
+                            `lookfintech.customer` AS customer
+                        ON 
+                            loan.customer_id = customer.customer_id;
+                    </code>
+                </pre>
+            </div>
+            
+
+
+
+            </main>
+
+        </section>
+            
+
+        <footer class="py-10 md:py-16 mb-20 md:mb-40 lg::mb-52">
+
+            <div class="container max-w-screen-xl mx-auto px-4">
+
+                <div class="text-center">
+                    <h1 class="font-medium text-gray-700 text-4xl md:text-5xl mb-5">Contact</h1>
+
+                    <p class="font-normal text-gray-400 text-md md:text-lg mb-20">Feel free to contact me by any of those means. <br> Felipecoelhoacvv@gmail.com</p>
+
+                    <div class="flex items-center justify-center space-x-8">
+                        <a href="https://www.linkedin.com/in/felipe-coelho-372b952b6/" class="w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 transition ease-in-out duration-500">
+                            <i data-feather="linkedin" class="text-gray-500 hover:text-gray-800 transition ease-in-out duration-500"></i>
+                        </a>
+    
+                        <a href="#" class="w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 transition ease-in-out duration-500">
+                            <i data-feather="github" class="text-gray-500 hover:text-gray-700 transition ease-in-out duration-500"></i>
+                        </a>
+    
+                    </div>
+                </div>
+
+            </div>
+
+        </footer>
+
+
+        <script>
+            feather.replace()
+        </script>
+
+    </body>
+</html>

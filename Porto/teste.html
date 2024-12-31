@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Works - Power BI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <!-- Título da Página -->
+    <div class="container mx-auto text-center py-12">
+        <h1 class="text-4xl font-semibold">Adventure Works</h1>
+        <p class="mt-2 text-xl">Usando Somente Power BI</p>
+    </div>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+
+            <!-- Button Home -->
+            <div class="flex justify-end mb-4">
+                <a href="/" class="bg-blue-800 text-white px-4 py-2 rounded-md hover:bg-blue-700">Home</a>
+            </div>
+
+            <!-- Article Section -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4">Artigo</h2>
+                <p class="text-lg leading-relaxed">
+                    O Power BI é uma ferramenta poderosa para análise de dados. Neste projeto, o foco foi utilizar exclusivamente o Power BI para realizar a análise e visualização de dados de forma eficaz, sem recorrer a outras ferramentas de programação ou scripts.
+                </p>
+                <p class="text-lg leading-relaxed mt-4">
+                    Ao longo deste artigo, vamos explorar como a análise de dados foi realizada, os insights gerados e as decisões tomadas com base nos resultados apresentados. O Power BI oferece uma plataforma intuitiva para integrar dados, visualizar insights e criar relatórios dinâmicos, sendo uma escolha excelente para quem deseja trabalhar com Business Intelligence de maneira simplificada.
+                </p>
+                <p class="text-lg leading-relaxed mt-4">
+                    O desafio deste projeto foi mostrar a versatilidade da ferramenta, utilizando recursos como gráficos dinâmicos, tabelas interativas e análise de dados em tempo real.
+                </p>
+            </div>
+
+            <!-- Code Section -->
+            <div class="mt-8">
+                <h2 class="text-2xl font-semibold mb-4">Código</h2>
+                <pre class="bg-gray-200 text-white p-4 rounded-lg overflow-x-auto">
+                    <code class="text-xs">
+                        // Código Power BI (DAX, M Query, etc.)
+                        Sales = 
+                        SUMMARIZE (
+                            SalesData, 
+                            SalesData[Product], 
+                            "Total Sales", SUM(SalesData[SalesAmount])
+                        )
+                    </code>
+                </pre>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="mt-8">
+                <h2 class="text-2xl font-semibold mb-4">Gráfico</h2>
+                <div id="powerbi-chart" class="h-80 bg-gray-200 rounded-lg">
+                    <!-- Aqui você pode inserir um gráfico interativo do Power BI -->
+                    <p class="text-center pt-36 text-gray-500">Gráfico interativo do Power BI</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

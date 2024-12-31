@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Felipe's Portfolio - Real Estate Brazil Investing</title>
+        <link rel="stylesheet" href="assets/css/tailwind.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+
+    <body class="bg-gray-100">
+        
+        
+        <section class="py-10 md:py-6">
+            <div class="container max-w-screen-xl mx-auto px-4">
+                <!-- Navigation Bar -->
+                <nav class="flex items-center justify-between mb-40">
+                    <!-- Logo -->
+                    <img src="assets/image/fcoelho (1).png" alt="Logo">
+        
+                    <!-- Buttons aligned to the right -->
+                    <div class="flex space-x-4">
+                        <!-- Projects Button with Inverted Colors -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-gray-700 text-white font-medium md:font-semibold text-md rounded-md hover:bg-white hover:text-gray-700 transition ease-linear duration-500" 
+                            onclick="window.location.href='/index.html#projects'">
+                            Projects
+                        </button>
+        
+                        <!-- Home Button -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500" 
+                            onclick="window.location.href='/index.html'">
+                            Home
+                        </button>
+        
+                        <!-- Get My CV Button -->
+                        <button 
+                            class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500" 
+                            onclick="window.location.href='/pagina-destino'">
+                            Get my CV
+                        </button>
+                    </div>
+                </nav>
+        
+                <!-- Title for the next section -->
+                <div class="text-center mt-20">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-700">Real Estate Investor: Search business opportunities in Sao Paulo, Brazil</h2>
+                    <p class="mt-4 text-gray-500 text-lg">
+                        Project made with data scrapping (Beautiful Soup - Python), Pandas for Data Cleaning, and Power Bi for Visualization. 
+                    </p>
+                </div>
+            </div>
+        </section>
+       
+
+
+
+        <section class="py-10 md:py-12">
+            <main class="container mx-auto px-4 py-12">
+                <div class="bg-white shadow-lg rounded-lg p-6">
+            
+            <div class="container max-w-screen-xl mx-auto px-4">
+                <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">Results</h1>
+
+                <p class="font-normal text-gray-500 text-xs md:text-base mb-20">
+                    In this project, our investor asked us to make a research in the state of Sao Paulo, in Brazil, and elaborate a dashboard that would allow him to choose the best cities to invest. As his goal wasn't finding a particular
+                     real estate (Different from our other real estate project, here), but exploring the state opportunities, i've elaborated a dashboard that helped him to look to the same object by various angles. I've created the dataset on my own by scraping 
+                     a auctioner website in Brazil and cleaned the data with Python (Pandas). I'll be showing first the interactive dashboard and then the process to get in it. 
+                </p>
+
+                <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+                    <iframe title="Biprojimob" width="1000" height="636" src="https://app.powerbi.com/view?r=eyJrIjoiYjQwYjYxMDktNjU1OS00MzlmLWFiZGEtZDRhYTc0NmQyMjc5IiwidCI6IjExMmM3ODIwLTBiMmQtNDk2Ny1iZmE1LTgzYWUzN2Q4YmJmNCJ9" frameborder="0" allowFullScreen="true"></iframe>
+                  </div>
+                  
+                <p class="mt-4 text-gray-500 text-lg">
+
+                </p>
+                <br><br>
+                <h4 class="font-medium text-gray-700 md:text-2xl mb-5">Data Scrapping with Python</h4>
+                    <p class="font-normal text-gray-500 text-md"> For this portfolio project i've focused in only one (but the biggest) auctioner brazilian website, in a real case we could have inserted more 
+                        <br>
+                       according to our client's necessity. Following you can see my python script, built with the help of online courses, AI and personal effort. 
+                    </p>
+
+            </div>
+
+            <div class="bg-gray-700 text-gray-200 p-4 rounded-md overflow-x-auto mt-8 max-w-4xl mx-auto">
+                <pre class="text-sm">
+                    <code class="text-green-400">
+                        <span class="text-yellow-400 font-bold">/* STEP 1: Getting the link of all the pages */</span>
+            
+                                            from requests_html import HTMLSession
+                    from bs4 import BeautifulSoup
+                    from urllib.parse import urljoin
+
+                    s = HTMLSession()
+
+                    url = 'https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35'
+
+                    def getdata(url):
+                        getter = s.get(url)
+                        soup = BeautifulSoup(getter.text, 'html.parser')
+                        return soup 
+
+                    def getnextpage(soup, base_url): <span class="text-blue-400 font-bold"> # Locating the symbol '>' </span>
+                        
+                        page = soup.find('button', {'type': 'button', 'class': 'button borderd round'}, string='>')
+                        
+                        if page:
+
+                            parent_a = page.find_parent('a')
+                            href = parent_a['href'] if parent_a and 'href' in parent_a.attrs else None
+                            
+                            return urljoin(base_url, href) if href else None
+                        return None
+
+                        <span class="text-blue-400 font-bold"> # Looping the pages </span>
+                    while url:
+                        soup = getdata(url)
+                        print(f"Scraping: {url}") 
+                        next_page_url = getnextpage(soup, url)
+                        if not next_page_url:
+                            break
+                        url = next_page_url 
+
+                    </code>
+                </pre>
+            </div>
+    
+            <div class="bg-gray-700 text-gray-200 p-4 rounded-md overflow-x-auto mt-8 max-w-4xl mx-auto">
+                <pre class="text-sm">
+                    <code class="text-green-400">
+                        <span class="text-yellow-400 font-bold">/* STEP 2: Getting the link of all objects in the pages */</span>
+                
+                        import requests
+                        from bs4 import BeautifulSoup
+            
+                        <span class="text-blue-400 font-bold"># Extracting objects from each page</span>
+                        def obter_links_imoveis(url):
+                            response = requests.get(url)
+                            soup = BeautifulSoup(response.text, 'html.parser')
+            
+                            links = []
+                            for link in soup.find_all('a', class_='Link_Redirecter'):
+                                href = link.get('href')
+                                if href:
+                                    links.append('https://www.leilaoimovel.com.br' + href)
+                            
+                            return links
+            
+                        urls_paginas = [
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=2",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=3",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=4",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=5",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=6",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=7",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=8",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=9",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=10",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=11",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=12",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=13",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=14",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=15",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=16",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=17",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=18",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=19",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=20",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=21",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=22",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=23",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=24",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=25",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=26",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=27",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=28",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=29",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=30",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=31",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=32",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=33",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=34",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=35",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=36",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=37",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=38",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=39",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=40",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=41",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=42",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=43",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=44",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=45",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=46",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=47",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=48",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=49",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=50",
+                            "https://www.leilaoimovel.com.br/encontre-seu-imovel?s=&tipo=2,1,6&estado=35&pag=51"
+                        ]
+            
+                        <span class="text-blue-400 font-bold"># Exporting to text</span>
+                        arquivo = 'links_imoveis.txt'
+            
+                        with open(arquivo, 'w') as file:
+                            # Iterar pelas páginas e extrair os links
+                            for url in urls_paginas:
+                                print(f"Scraping: {url}")
+                                links_imoveis = obter_links_imoveis(url)
+                                for link in links_imoveis:
+                                    file.write(f'"{link}",\n')
+            
+                        print(f"exported in {arquivo}")
+                    </code>
+                </pre>
+                <br>
+            </div>
+            <br><br>
+            <div class="container max-w-screen-xl mx-auto px-4">
+            
+                    <div class="bg-gray-700 text-gray-200 p-4 rounded-md overflow-x-auto mt-8 max-w-4xl mx-auto">
+                        <pre class="text-sm">
+                            <code class="text-green-400">
+                    <span class="text-yellow-400 font-bold">/* STEP 3: Scrap the pages */</span>
+            
+                        import requests
+                        from bs4 import BeautifulSoup
+                        import csv
+
+                        <span class="text-blue-400 font-bold"># Extract info from HTML</span>
+                        def scrape_detalhes_imovel(url):
+                            try:
+                                response = requests.get(url)
+                                response.raise_for_status()  # Checar por erros na requisição
+                                soup = BeautifulSoup(response.text, 'html.parser')
+                                
+                                <span class="text-blue-400 font-bold">## Finding the HTML </span>
+                                titulo = soup.find("h1").get_text(strip=True) if soup.find("h1") else "Não disponível"
+                                cidade = soup.find("a", itemprop="item").find("span", itemprop="name").get_text(strip=True) if soup.find("a", itemprop="item") else "Não disponível"
+                                valor_imovel = soup.find("h2", class_="discount-price mb-0").get_text(strip=True) if soup.find("h2", class_="discount-price mb-0") else "Não disponível"
+                                valor_avaliado = soup.find("h2", class_="mb-0").get_text(strip=True) if soup.find("h2", class_="mb-0") else "Não disponível"
+                                
+                                area_util_tag = soup.find("p", class_="mb-1", text=lambda x: x and "Área Útil:" in x)
+                                area_util = area_util_tag.find_next("span").get_text(strip=True) if area_util_tag else "Não disponível"
+                                
+                                area_terreno_tag = soup.find("p", class_="mb-1", text=lambda x: x and "Área Terreno:" in x)
+                                area_terreno = area_terreno_tag.find_next("span").get_text(strip=True) if area_terreno_tag else "Não disponível"
+                                
+                                desconto_tag = soup.find("span", class_="down")
+                                desconto = desconto_tag.find("b").get_text(strip=True) if desconto_tag else "Não disponível"
+                                
+                                endereco_tag = soup.find("div", class_="col-12 mt-2")
+                                endereco = endereco_tag.find("p").get_text(strip=True) if endereco_tag else "Não disponível"
+                            
+                                quartos = soup.find("div", class_="icon", text=lambda x: x and "Quartos" in x).find_next("span").get_text(strip=True) if soup.find("div", class_="icon", text=lambda x: x and "Quartos" in x) else "Não disponível"
+                                vagas = soup.find("div", class_="icon", text=lambda x: x and "Vagas" in x).find_next("span").get_text(strip=True) if soup.find("div", class_="icon", text=lambda x: x and "Vagas" in x) else "Não disponível"
+
+                                return {
+                                    "titulo": titulo,
+                                    "cidade": cidade,
+                                    "valor_imovel": valor_imovel,
+                                    "valor_avaliado": valor_avaliado,
+                                    "area_util": area_util,
+                                    "area_terreno": area_terreno,
+                                    "desconto": desconto,
+                                    "endereco": endereco,
+                                    "quartos": quartos,
+                                    "vagas": vagas
+                                }
+                            except Exception as e:
+                                print(f"Erro ao processar {url}: {e}")
+                                return None
+
+                        with open('links_imoveis.txt', 'r') as file:
+                            urls = [line.strip().strip('",') for line in file.readlines()] <span class="text-blue-400 font-bold"> #Removing extra commas and spaces </span>
+
+                        dados_imoveis = []
+
+                        for url in urls:
+                            print(f"Scraping: {url}")
+                            detalhes = scrape_detalhes_imovel(url)
+                            if detalhes:
+                                dados_imoveis.append(detalhes)
+
+                        for imovel in dados_imoveis:
+                            print(imovel)
+
+                        # <span class="text-blue-400 font-bold">Save on CSV </span>
+                        with open('dados_imoveis.csv', 'w', newline='', encoding='utf-8') as csvfile:
+                            fieldnames = ["titulo", "cidade", "valor_imovel", "valor_avaliado", "area_util", "area_terreno", "desconto", "endereco", "quartos", "vagas"]
+                            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                            
+                            writer.writeheader()
+                            writer.writerows(dados_imoveis)
+
+                        print("Saved in 'dados_imoveis.csv'.")
+
+                                        </code>
+                                    </pre>
+                    </div>
+
+                    
+                                                        
+                
+
+                <h4 class="font-medium text-gray-700 md:text-2xl mb-5">Data Cleaning and EDA</h4>
+                    <p class="font-normal text-gray-500 text-md"> We used Python's Pandas and Data Profiling library to clean our created dataset and discover insights. Since we have a relatively simple data set, our profiling with pandas profiling was all about seeing empty values, duplicates etc, what guided us through our cleaning process. 
+                    </p>
+                    
+
+                    <div class="bg-gray-700 text-gray-200 p-4 rounded-md overflow-x-auto mt-8 max-w-4xl mx-auto">
+                        <pre class="text-sm">
+                            <code class="text-green-400">
+                                <span class="text-yellow-400 font-bold">/* PYTHON DATA WRANGLING */</span>
+
+                        
+                    import pandas as pd
+                    from ydata_profiling import ProfileReport
+
+                    imdata = pd.read_csv('C:/Users/felip/dados_imoveis.csv', decimal=',', thousands='.') 
+                    imdata
+
+                        <span class="text-blue-400 font-bold"># Cleaning</span>
+                        cleanimdata = imdata.drop_duplicates()[~imdata.drop_duplicates()['titulo'].str.contains('Não disponível')]
+                        <span class="text-blue-400 font-bold"># Extracting the name of the city. Once the data scrapping failed</span>
+                        cleanimdata['City'] = cleanimdata['titulo'].str.extract(r'em\s+(.*?)\s+/') # "\s+" stands for space, while (.*?) searches the content between.
+                        cleanimdata['City'] = cleanimdata['City'].str.replace(r'(?i)^leilão em\s+', '', regex=True)
+                        <span class="text-blue-400 font-bold"># Converting the due columns in floats</span>
+                        cleanimdata = cleanimdata.convert_dtypes()
+
+                        <span class="text-blue-400 font-bold">## removing money symbols and extra spaces</span>
+                        cleanimdata['valor_imovel'] = cleanimdata['valor_imovel'].replace({'R\$': '', ' ': ''}, regex=True)
+                        cleanimdata['valor_imovel'] = cleanimdata['valor_imovel'].replace({'\.': ''}, regex=True)
+                        cleanimdata['valor_imovel'] = cleanimdata['valor_imovel'].replace({',': '.'}, regex=True)
+                        cleanimdata['valor_imovel'] = pd.to_numeric(cleanimdata['valor_imovel'], errors='coerce')
+
+                        <span class="text-blue-400 font-bold">## removing money symbols and extra spaces</span>
+                        cleanimdata['valor_avaliado'] = cleanimdata['valor_avaliado'].replace({'R\$': '', ' ': ''}, regex=True)
+                        cleanimdata['valor_avaliado'] = cleanimdata['valor_avaliado'].replace({'\.': ''}, regex=True)
+                        cleanimdata['valor_avaliado'] = cleanimdata['valor_avaliado'].replace({',': '.'}, regex=True)
+                        cleanimdata['valor_avaliado'] = pd.to_numeric(cleanimdata['valor_avaliado'], errors='coerce')
+
+                        <span class="text-blue-400 font-bold">## removing measures in data</span>
+                        cleanimdata['area_util'] = cleanimdata['area_util'].replace({'[^\d,\.]': ''}, regex=True) <span class="text-blue-400 font-bold"># Used to replace everything except (the brackets [] marks exception) numbers (\d), commas (,), dots (\.) </span>
+                        cleanimdata['area_util'] = cleanimdata['area_util'].replace({',': '.'}, regex=True)
+                        cleanimdata['area_util'] = pd.to_numeric(cleanimdata['area_util'], errors='coerce')
+                        cleanimdata['area_util'] = cleanimdata['area_util'].fillna(0)
+
+                        <span class="text-blue-400 font-bold">## removing measures in data</span>
+                        cleanimdata['area_terreno'] = cleanimdata['area_terreno'].replace({'[^\d,\.]': ''}, regex=True)
+                        cleanimdata['area_terreno'] = cleanimdata['area_terreno'].replace({',': '.'}, regex=True)
+                        cleanimdata['area_terreno'] = pd.to_numeric(cleanimdata['area_terreno'], errors='coerce')
+                        cleanimdata['area_terreno'] = cleanimdata['area_terreno'].fillna(0)
+
+                        <span class="text-blue-400 font-bold"># Rename Columns</span>
+                        cleanimdata = cleanimdata.rename(columns={
+                            'titulo': 'RE_Title',
+                            'valor_imovel': 'RE_ListValue',
+                            'valor_avaliado': 'RE_MarketValue',
+                            'area_util': 'Area',
+                            'area_terreno': 'Terrain_Area',
+                            'endereco': 'Address'
+                        })
+
+                        <span class="text-blue-400 font-bold"># Created Calculated Column </span>
+                        cleanimdata['Discount'] = (cleanimdata['RE_ListValue']/cleanimdata['RE_MarketValue']).round(2)
+                        cleanimdata['Discount'] = cleanimdata['Discount'].replace(1.0, 0)
+
+                        cleanimdata = cleanimdata[['RE_Title', 'City', 'RE_ListValue','RE_MarketValue','Discount', 'Address', 'Area', 'Terrain_Area']]
+
+                        cleanimdata
+
+                        # <span class="text-blue-400 font-bold">Save on CSV </span>
+                        with open('dados_imoveis.csv', 'w', newline='', encoding='utf-8') as csvfile:
+                            fieldnames = ["titulo", "cidade", "valor_imovel", "valor_avaliado", "area_util", "area_terreno", "desconto", "endereco", "quartos", "vagas"]
+                            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                            
+                            writer.writeheader()
+                            writer.writerows(dados_imoveis)
+
+                        print("Saved in 'dados_imoveis.csv'.")
+
+                                        </code>
+                                    </pre>
+                    </div>
+                    <p class="font-normal text-gray-500 text-md"> After cleaning everything and used Data Profiling for EDA, i've exported the data to PBI, where i've produced the dashboard in the top of the
+                    </p>
+
+            </div>
+            
+            
+            
+
+
+
+            </main>
+
+        </section>
+            
+
+        <footer class="py-10 md:py-16 mb-20 md:mb-40 lg::mb-52">
+
+            <div class="container max-w-screen-xl mx-auto px-4">
+
+                <div class="text-center">
+                    <h1 class="font-medium text-gray-700 text-4xl md:text-5xl mb-5">Contact</h1>
+
+                    <p class="font-normal text-gray-400 text-md md:text-lg mb-20">Feel free to contact me by any of those means. <br> Felipecoelhoacvv@gmail.com</p>
+
+                    <div class="flex items-center justify-center space-x-8">
+                        <a href="https://www.linkedin.com/in/felipe-coelho-372b952b6/" class="w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 transition ease-in-out duration-500">
+                            <i data-feather="linkedin" class="text-gray-500 hover:text-gray-800 transition ease-in-out duration-500"></i>
+                        </a>
+    
+                        <a href="#" class="w-16 h-16 flex items-center justify-center rounded-full hover:bg-gray-200 transition ease-in-out duration-500">
+                            <i data-feather="github" class="text-gray-500 hover:text-gray-700 transition ease-in-out duration-500"></i>
+                        </a>
+    
+                    </div>
+                </div>
+
+            </div>
+
+        </footer>
+
+
+        <script>
+            feather.replace()
+        </script>
+
+    </body>
+</html>
